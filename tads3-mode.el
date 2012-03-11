@@ -245,7 +245,7 @@ newline before braces then use:
 ;  (insert (make-regexp tads-functions-list)))
 
 ;(defvar tads-keywords-list
-;  '("abort" "argcount" "break" "continue" "delete" "do" "else" "exit" 
+;  '("abort" "argcount" "break" "continue" "delete" "do" "else" "exit"
 ;    "exitobj" "for" "goto" "if" "inherited" "local" "modify" "new" "nil"
 ;    "pass" "replace" "return" "self" "switch" "true" "while")
 ;  "List of TADS keywords.")
@@ -341,7 +341,7 @@ newline before braces then use:
        1 font-lock-string-face)
 
      ;; objects and non-TADS functions
-     '("^\\(\\w+[ \t]+\\)*\\(\\w+\\) *: *\\w+"
+     '("^\\(\\w+[ \t]+\\)*\\+*[ \t]*\\(\\w+\\) *: *\\w+"
        2 font-lock-function-name-face)
      '("^[ \t]*modify \\(\\w+\\)"
        1 font-lock-function-name-face)
@@ -589,6 +589,13 @@ Return the amount the indentation changed by."
           ((eq indent t)
 	   ;; comment
            (setq indent (calculate-tads-indent-within-comment)))
+          ((and (not (looking-at "[ \t]*;"))
+                (save-excursion
+                  (tads-backward-to-noncomment 1)
+                  (beginning-of-line)
+                  (looking-at ".*\"[ \t]*$")))
+           ;; "description"
+           (setq indent tads-indent-level))
           ((looking-at "[ \t]*#")
 	   ;; directive
            (setq indent 0))
@@ -707,7 +714,7 @@ level rather than being C-style code in a function body."
 			   (backward-sexp 1)
 			   (skip-chars-backward " \t\n")))
 		     (current-indentation)))))
-	    
+
 	    ;; Not at top level - so we go back to doing C stuff
 	    ((/= (char-after containing-sexp) ?{)
 	     ;; line is expression, not statement (i.e., we're
@@ -1393,5 +1400,7 @@ With a negative prefix arg, go forwards."
 	  (goto-char insertpos)
 	  (self-insert-command (prefix-numeric-value arg)))
       (self-insert-command (prefix-numeric-value arg)))))
+
+(provide 'tads3)
 
 ;;; tads-mode.el ends here
