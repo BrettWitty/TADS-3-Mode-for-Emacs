@@ -592,8 +592,8 @@ Return the amount the indentation changed by."
           ((and (not (looking-at "[ \t]*;"))
                 (save-excursion
                   (tads-backward-to-noncomment 1)
-                  (beginning-of-line)
-                  (looking-at ".*\"[ \t]*$")))
+                  (backward-char)
+                  (looking-at "\"")))
            ;; "description"
            (setq indent tads-indent-level))
           ((looking-at "[ \t]*#")
