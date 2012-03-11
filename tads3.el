@@ -589,6 +589,9 @@ Return the amount the indentation changed by."
           ((eq indent t)
 	   ;; comment
            (setq indent (calculate-tads-indent-within-comment)))
+          ((looking-at "[ \t]*#")
+	   ;; directive
+           (setq indent 0))
           ((and (not (looking-at "[ \t]*;"))
                 (save-excursion
                   (tads-backward-to-noncomment 1)
@@ -596,9 +599,6 @@ Return the amount the indentation changed by."
                   (looking-at "\"")))
            ;; "description"
            (setq indent tads-indent-level))
-          ((looking-at "[ \t]*#")
-	   ;; directive
-           (setq indent 0))
           (t
            (if (listp indent)
 	       (setq indent (car indent))
