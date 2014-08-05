@@ -1,7 +1,7 @@
 ;;; tads3-mode.el --- TADS 2/3 mode for GNU Emacs v19 or later
 
 ;;;;;;;;;;;
-;; This version was modified by Brett Witty <shorokin@hotmail.com>
+;; This version was modified by Brett Witty <brettwitty@brettwitty.net>
 ;; from Stephen Granade's tads2-mode.el. The only real changes was a
 ;; modified regexp to deal with object definitions so that
 ;; tads-next-object and tads-prev-object work nicer. It also helps
@@ -22,7 +22,7 @@
 ;; conjunction with this mode, to assist in single quote filling.
 ;;;;;;;;;;;
 
-;; Author: Brett Witty <shorokin@hotmail.com>
+;; Author: Brett Witty <brettwitty@brettwitty.net>
 ;; Modified: 4 Feb 2006
 ;; Version: 1.3
 ;; Keywords: languages
@@ -34,7 +34,7 @@
 ;; Keywords: languages
 
 ;; LCD Archive Entry:
-;; tads3-mode|Brett Witty|shorokin@hotmail.com|
+;; tads3-mode|Brett Witty|brettwitty@brettwitty.net|
 ;; Major mode for editing TADS 2/3 programs|
 ;; 4-Feb-2006|1.3|~/modes/tads3-mode.el.Z|
 
